@@ -1,0 +1,12 @@
+{
+  "name": "lucky-claw-machine",
+  "version": "1.0.0",
+  "description": "Discord Claw Machine Bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.14.1"
+  }
+}
