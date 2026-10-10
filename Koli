@@ -1,0 +1,31 @@
+import os
+import discord
+from discord.ext import commands
+
+# ตั้งค่าสิทธิ์ให้บอทอ่านข้อความ
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix="!", intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'บอท {bot.user.name} ออนไลน์บนแท็บเล็ตพร้อมใช้งานแล้ว!')
+    await bot.change_presence(activity=discord.Game(name="รับปรึกษาปัญหา 24 ชม."))
+
+@bot.event
+async def on_message(message):
+    if message.author == bot.user:
+        return
+
+    user_message = message.content.lower()
+
+    if "ปรึกษา" in user_message or "ช่วยหน่อย" in user_message:
+        await message.reply("สวัสดีครับ ผม KOLI ยินดีให้คำปรึกษาครับ มีเรื่องอะไรไม่สบายใจคุยกับผมได้เลยนะ!")
+    elif "สวัสดี" in user_message or "hello" in user_message:
+        await message.reply(f"สวัสดีครับคุณ {message.author.name}! มีอะไรให้ KOLI ช่วยเหลือไหมครับ?")
+
+    await bot.process_commands(message)
+
+# ดึงรหัสลับจากระบบความปลอดภัยของ Replit
+bot.run('MTU1ODUwNjE3ODY1MTA5OTEzNg.GXh7H0.7P3CFCYPFwydsODPfyK2etEh3_3ThVmyZ2VqAU')
